@@ -9,20 +9,16 @@ declare global {
 }
 
 const App = () => {
-  // 1. Configuración de Eventos (Solo ViewContent, el Pixel base ya está en HTML)
+  // 1. Configuración de Pixel (SOLO EVENTOS ADICIONALES)
   useEffect(() => {
-    // Pequeño retraso para asegurar que window.fbq del HTML ya cargó
+    // El script base ya está en el HTML. Solo disparamos ViewContent si es necesario.
     const timer = setTimeout(() => {
       // @ts-ignore
       if (typeof window !== 'undefined' && window.fbq) {
         // @ts-ignore
-        window.fbq('track', 'ViewContent', { 
-            content_name: 'Landing Kit Domando Monstruo' 
-        });
-        console.log("👀 Pixel: Evento ViewContent disparado desde React.");
+        window.fbq('track', 'ViewContent', { content_name: 'Kit Domando a mi Monstruo' });
       }
     }, 1000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -158,7 +154,7 @@ const App = () => {
             {/* Wave 2 */}
             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(243, 244, 246, 0.7)" />
@@ -243,7 +239,7 @@ const App = () => {
             {/* Wave 4 */}
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58-18 88 18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(239, 246, 255, 0.7)" />
@@ -301,7 +297,7 @@ const App = () => {
             </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88 18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
@@ -447,7 +443,7 @@ const App = () => {
             </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58 18 88 18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(249, 250, 251, 0.7)" />
