@@ -9,44 +9,36 @@ declare global {
 }
 
 const App = () => {
-  // 1. Configuración de Pixel
+  // 1. Configuración de Eventos (Solo ViewContent, el Pixel base ya está en HTML)
   useEffect(() => {
-    const PIXEL_ID = '25880863674841918';
-
-    if (!window.fbq) {
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      
-      window.fbq('init', PIXEL_ID);
-    }
-
-    // 3. Disparar eventos de carga con pequeño retraso
+    // Pequeño retraso para asegurar que window.fbq del HTML ya cargó
     const timer = setTimeout(() => {
-      if (window.fbq) {
-        window.fbq('track', 'PageView');
-        window.fbq('track', 'ViewContent');
-        console.log("👀 Pixel: PageView y ViewContent disparados.");
+      // @ts-ignore
+      if (typeof window !== 'undefined' && window.fbq) {
+        // @ts-ignore
+        window.fbq('track', 'ViewContent', { 
+            content_name: 'Landing Kit Domando Monstruo' 
+        });
+        console.log("👀 Pixel: Evento ViewContent disparado desde React.");
       }
     }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // 2. Manejador de Clics (AddToCart)
+  // 2. Manejador de Clics (AddToCart) - ESTE ES CLAVE PARA EL BOTÓN
   const handleAddToCart = () => {
-    if (window.fbq) {
+    // @ts-ignore
+    if (typeof window !== 'undefined' && window.fbq) {
+      // @ts-ignore
       window.fbq('track', 'AddToCart', {
-        content_name: 'Oferta Principal',
+        content_name: 'Kit Domando a mi Monstruo - Oferta Principal',
         value: 12.99,
         currency: 'USD'
       });
       console.log("🛒 Pixel: Evento AddToCart disparado.");
+    } else {
+        console.log("⚠️ Pixel no detectado al hacer clic");
     }
   };
 
@@ -166,7 +158,7 @@ const App = () => {
             {/* Wave 2 */}
             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58 18 88 18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(243, 244, 246, 0.7)" />
@@ -372,7 +364,7 @@ const App = () => {
                  <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-yellow-400 font-heading">Todo lo que recibes hoy:</h2>
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                        <div className="relative">
-                            <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/El%20Mockup%20del%20Producto.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9FbCBNb2NrdXAgZGVsIFByb2R1Y3RvLnBuZyIsImlhdCI6MTc2OTczMDc0NCwiZXhwIjoxODAxMjY2NzQ0fQ.9xwc2ZnLeURBsSZ3LgXzSM72BV7WOy9R8zaiW-ctILw" 
+                            <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/El%20Mockup%20del%20Producto.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay/FbCBNb2NrdXAgZGVsIFByb2R1Y3RvLnBuZyIsImlhdCI6MTc2OTczMDc0NCwiZXhwIjoxODAxMjY2NzQ0fQ.9xwc2ZnLeURBsSZ3LgXzSM72BV7WOy9R8zaiW-ctILw" 
                                  alt="Mockup Kit Completo" 
                                  className="w-full drop-shadow-2xl hover:scale-105 transition duration-500" />
                        </div>
