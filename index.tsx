@@ -55,6 +55,24 @@ const App = () => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+  // State for Sticky CTA
+  const [showStickyCta, setShowStickyCta] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById('solucion-section');
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        // Muestra el botón cuando la parte superior de la sección entra en el viewport (o ya ha pasado)
+        setShowStickyCta(rect.top <= window.innerHeight);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on mount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const borderColors: {[key: string]: string} = {
     yellow: 'border-yellow-400',
     blue: 'border-blue-400',
@@ -106,7 +124,7 @@ const App = () => {
             {/* Wave 1 */}
             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
@@ -119,10 +137,10 @@ const App = () => {
 
         {/* DOLOR */}
         <section className="py-16 md:py-24 bg-white relative z-20">
-             <div className="container mx-auto px-4 max-w-5xl relative z-10 pb-10">
+             <div className="container mx-auto px-4 max-w-5xl relative z-10 pb-24">
                 <div className="flex flex-col md:flex-row gap-10 items-center">
                     <div className="w-full md:w-1/2">
-                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/La%20Imagen%20del%20Dolor.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9MYSBJbWFnZW4gZGVsIERvbG9yLnBuZyIsImlhdCI6MTc2OTczMDY1NywiZXhwIjoxODAxMjY2NjU3fQ.WHucOIU3KSZ609cGOcdJECQJSCg2wFwb61K-0nCnrxQ" 
+                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/mama.gif?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9tYW1hLmdpZiIsImlhdCI6MTc2OTg3NjQ5NCwiZXhwIjoxODAxNDEyNDk0fQ.ImrZ2clIZbLfbYm3Gk4h8kwf7v1q3L-zEAcC9K_ekBE" 
                              alt="Madre estresada" 
                              className="rounded-[2rem] shadow-xl border-2 border-gray-100 w-full transform -rotate-1" />
                     </div>
@@ -154,7 +172,7 @@ const App = () => {
             {/* Wave 2 */}
             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(243, 244, 246, 0.7)" />
@@ -166,8 +184,8 @@ const App = () => {
         </section>
 
         {/* 3. SOLUCIÓN */}
-        <section className="py-20 bg-gray-100 relative z-10">
-             <div className="container mx-auto px-4 max-w-4xl text-center pb-10">
+        <section id="solucion-section" className="py-20 bg-gray-100 relative z-10">
+             <div className="container mx-auto px-4 max-w-4xl text-center pb-24">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-heading leading-tight">
                     El problema no es tu hijo. Es que le faltan las <span className="text-blue-500 relative inline-block whitespace-nowrap">HERRAMIENTAS<svg className="absolute w-full h-3 -bottom-1 left-0 text-yellow-400 opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" /></svg></span>.
                 </h2>
@@ -192,7 +210,7 @@ const App = () => {
             {/* Wave 3 */}
             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
@@ -205,7 +223,7 @@ const App = () => {
 
         {/* 4. COMO FUNCIONA */}
         <section className="py-20 bg-white relative z-20">
-             <div className="container mx-auto px-4 max-w-6xl pb-10">
+             <div className="container mx-auto px-4 max-w-6xl pb-24">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-black text-gray-900 font-heading">Un Método de 3 Pasos Disfrazado de Juego</h2>
                 </div>
@@ -239,7 +257,7 @@ const App = () => {
             {/* Wave 4 */}
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58-18 88-18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(239, 246, 255, 0.7)" />
@@ -252,7 +270,7 @@ const App = () => {
 
         {/* 5. BENEFICIOS */}
         <section className="py-20 bg-blue-50 relative z-10">
-            <div className="container mx-auto px-4 max-w-4xl pb-10">
+            <div className="container mx-auto px-4 max-w-4xl pb-24">
                 <h2 className="text-3xl font-bold text-center text-gray-900 mb-10 font-heading">Lo que empezarás a notar en menos de 7 días:</h2>
                 <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-blue-100">
                     <ul className="space-y-6">
@@ -297,7 +315,7 @@ const App = () => {
             </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
@@ -310,7 +328,7 @@ const App = () => {
 
         {/* TESTIMONIOS */}
         <section className="py-20 bg-white relative z-20 overflow-hidden">
-             <div className="container mx-auto px-4 relative pt-6 pb-10">
+             <div className="container mx-auto px-4 relative pt-6 pb-32">
                 <h2 className="font-heading text-2xl md:text-3xl font-black text-center mb-10 text-gray-900 px-2 leading-tight">
                     Más de 1.000 padres ya recuperaron la calma. <br className="hidden md:block" />Aquí sus historias:
                 </h2>
@@ -343,7 +361,7 @@ const App = () => {
             </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(30, 58, 138, 0.7)" />
@@ -356,11 +374,11 @@ const App = () => {
 
         {/* 6. OFERTA */}
         <section id="oferta" className="py-24 bg-blue-900 text-white relative z-10">
-             <div className="container mx-auto px-4 max-w-6xl pt-8 pb-10">
+             <div className="container mx-auto px-4 max-w-6xl pt-8 pb-24">
                  <h2 className="text-3xl md:text-5xl font-black text-center mb-12 text-yellow-400 font-heading">Todo lo que recibes hoy:</h2>
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                        <div className="relative">
-                            <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/El%20Mockup%20del%20Producto.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay/FbCBNb2NrdXAgZGVsIFByb2R1Y3RvLnBuZyIsImlhdCI6MTc2OTczMDc0NCwiZXhwIjoxODAxMjY2NzQ0fQ.9xwc2ZnLeURBsSZ3LgXzSM72BV7WOy9R8zaiW-ctILw" 
+                            <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/mockup.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbW9ja3VwLmpwZyIsImlhdCI6MTc2OTg3MzQ1NiwiZXhwIjoxODAxNDA5NDU2fQ.0hyDgDOshqsMAzSRa2BvPYFpcOQbMIZBY1bPGseWXm8" 
                                  alt="Mockup Kit Completo" 
                                  className="w-full drop-shadow-2xl hover:scale-105 transition duration-500" />
                        </div>
@@ -417,20 +435,20 @@ const App = () => {
              </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
-                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(249, 250, 251, 0.7)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(249, 250, 251, 0.5)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(249, 250, 251, 0.3)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#f9fafb" />
+                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.7)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.5)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.3)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#ffffff" />
                 </g>
             </svg>
         </section>
 
         {/* 8. GARANTÍA */}
         <section className="py-20 bg-white relative z-20">
-             <div className="container mx-auto px-4 max-w-3xl text-center pb-10">
+             <div className="container mx-auto px-4 max-w-3xl text-center pb-24">
                 <div className="mb-6 flex justify-center animate-bounce">
                     <svg className="w-24 h-24 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                 </div>
@@ -443,7 +461,7 @@ const App = () => {
             </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(249, 250, 251, 0.7)" />
@@ -490,7 +508,7 @@ const App = () => {
         </footer>
 
         {/* STICKY MOBILE CTA */}
-        <div className="fixed bottom-4 left-4 right-4 md:hidden z-50">
+        <div className={`fixed bottom-4 left-4 right-4 md:hidden z-50 transition-all duration-500 transform ${showStickyCta ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0 pointer-events-none'}`}>
              <a href="https://pay.hotmart.com/D104179255R?checkoutMode=10" target="_blank" onClick={handleAddToCart} className="block w-full bg-yellow-400 text-gray-900 font-black text-center py-4 rounded-xl shadow-2xl border-2 border-white border-b-4 border-yellow-600 animate-pulse-slow uppercase tracking-wide cursor-pointer">
                 DESCARGAR POR $12.99
             </a>
