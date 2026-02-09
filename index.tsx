@@ -112,24 +112,44 @@ const App = () => {
             </div>
         </nav>
 
-        {/* HERO SECTION */}
-        <header className="relative bg-gradient-to-b from-blue-50 to-white pt-10 pb-24 lg:pt-16 lg:pb-40 overflow-hidden">
+        {/* HERO SECTION REDESIGNED */}
+        <header className="relative bg-gradient-to-b from-blue-50 to-white pt-12 pb-32 lg:pt-20 lg:pb-48 overflow-hidden">
              <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-                    <p className="text-blue-600 font-bold tracking-wider text-[10px] md:text-sm uppercase mb-4 bg-blue-100 inline-block px-4 py-1.5 rounded-full border border-blue-200">
-                        PARA PADRES DE NIÑOS CON EMOCIONES INTENSAS
-                    </p>
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-8">
-                        Un método visual y divertido para que tu hijo aprenda a <span className="text-red-500">"domar a su monstruo"</span>
-                    </h1>
-                    <div className="mb-8 w-full max-w-sm md:max-w-md animate-float mx-auto">
-                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/herogif.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9oZXJvZ2lmLndlYnAiLCJpYXQiOjE3Njk3MzA2MjAsImV4cCI6MTgwMTI2NjYyMH0.cJfvz6IFSFPEfcOH-HU-RICCrfv9_hKKgDpdn48x7eg" 
-                             alt="Niño feliz domando monstruo" 
-                             className="w-full rounded-[2rem] shadow-2xl transform rotate-1 border-4 border-white block mx-auto" />
+                    
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-100 text-red-700 font-bold text-[10px] md:text-sm uppercase tracking-wider mb-8 shadow-sm">
+                        <span>🚨</span> MÉTODO PARA ROMPER EL BLOQUEO EMOCIONAL
                     </div>
-                    <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed font-medium">
-                        Regula sus emociones y recupera la calma en minutos. Sin gritos, sin castigos y sin ser la "mamá mala".
+
+                    {/* Headline */}
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.15] mb-8 font-heading">
+                        Tu gritas, él llora y nada cambia... <br className="hidden md:block"/>
+                        Rompe el <span className="text-red-600 bg-red-50 px-3 py-1 rounded-lg inline-block transform -rotate-2 border border-red-100 shadow-sm">Ciclo de Gritos</span> hoy mismo.
+                    </h1>
+
+                    {/* Image */}
+                    <div className="mb-10 w-full max-w-sm md:max-w-md animate-float mx-auto relative group">
+                         <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-[2.2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                         <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/herogif.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9oZXJvZ2lmLndlYnAiLCJpYXQiOjE3Njk3MzA2MjAsImV4cCI6MTgwMTI2NjYyMH0.cJfvz6IFSFPEfcOH-HU-RICCrfv9_hKKgDpdn48x7eg" 
+                             alt="Niño feliz domando monstruo" 
+                             className="w-full rounded-[2rem] shadow-2xl transform rotate-1 border-4 border-white block mx-auto relative z-10" />
+                    </div>
+
+                    {/* Subheadline */}
+                    <p className="text-lg md:text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
+                        Cuando el cerebro de tu hijo se bloquea, tus palabras no entran. <br className="hidden md:block" />
+                        Deja de desgastarte explicando y empieza a usar la <strong className="text-blue-600 bg-blue-50 px-1 rounded">"Pausa Visual Activa"</strong>: la única herramienta que detiene la explosión sin decir una sola palabra.
                     </p>
+
+                    {/* Scroll Indicator */}
+                    <div className="animate-bounce flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+                        <span className="text-sm font-bold text-blue-900 tracking-widest uppercase text-[10px]">Descubre cómo funciona</span>
+                        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </div>
+
                 </div>
             </div>
             {/* Wave 1 */}
@@ -183,7 +203,7 @@ const App = () => {
             {/* Wave 2 */}
             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(243, 244, 246, 0.7)" />
