@@ -55,24 +55,6 @@ const App = () => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  // State for Sticky CTA
-  const [showStickyCta, setShowStickyCta] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById('solucion-section');
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        // Muestra el botón cuando la parte superior de la sección entra en el viewport (o ya ha pasado)
-        setShowStickyCta(rect.top <= window.innerHeight);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on mount
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const borderColors: {[key: string]: string} = {
     yellow: 'border-yellow-400',
     blue: 'border-blue-400',
@@ -438,10 +420,10 @@ const App = () => {
                     <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
-                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.7)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.5)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.3)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#ffffff" />
+                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(249, 250, 251, 0.7)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(249, 250, 251, 0.5)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(249, 250, 251, 0.3)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#f9fafb" />
                 </g>
             </svg>
         </section>
@@ -506,13 +488,6 @@ const App = () => {
                 <p className="mt-2 text-xs opacity-60">Todos los derechos reservados. Este sitio no es parte del sitio web de Facebook o Facebook Inc.</p>
             </div>
         </footer>
-
-        {/* STICKY MOBILE CTA */}
-        <div className={`fixed bottom-4 left-4 right-4 md:hidden z-50 transition-all duration-500 transform ${showStickyCta ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0 pointer-events-none'}`}>
-             <a href="https://pay.hotmart.com/D104179255R?checkoutMode=10" target="_blank" onClick={handleAddToCart} className="block w-full bg-yellow-400 text-gray-900 font-black text-center py-4 rounded-xl shadow-2xl border-2 border-white border-b-4 border-yellow-600 animate-pulse-slow uppercase tracking-wide cursor-pointer">
-                DESCARGAR POR $12.99
-            </a>
-        </div>
     </div>
   );
 };
