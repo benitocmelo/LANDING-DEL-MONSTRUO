@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
 declare global {
@@ -29,7 +29,7 @@ const App = () => {
       // @ts-ignore
       window.fbq('track', 'AddToCart', {
         content_name: 'Kit Domando a mi Monstruo - Oferta Principal',
-        value: 12.99,
+        value: 10.99,
         currency: 'USD'
       });
       console.log("🛒 Pixel: Evento AddToCart disparado.");
@@ -54,6 +54,44 @@ const App = () => {
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  // Testimonials Data with Images
+  const testimonials = [
+      { name: 'Valeria G.', type: 'Mamá TDAH', color: 'yellow', text: "Mi hijo tiene TDAH y nada le funcionaba. Este método visual fue lo único que captó su atención. Ahora él mismo busca su 'semáforo' cuando se siente abrumado.", img: "https://randomuser.me/api/portraits/women/12.jpg" },
+      { name: 'Carlos R.', type: 'Papá', color: 'blue', text: "Soy papá y al principio pensé que eran 'dibujitos'. Pero ver a mi hijo respirar hondo en vez de tirar el control de la TV me dejó callado. Funciona de verdad.", img: "https://randomuser.me/api/portraits/men/32.jpg" },
+      { name: 'Clau M.', type: 'La Escéptica', color: 'red', text: "Lo compré sin mucha fe. Pero en 3 días el cambio fue radical. El concepto del monstruo les hace 'clic' en la cabeza. Por fin cenamos en paz.", img: "https://randomuser.me/api/portraits/women/44.jpg" },
+      { name: 'Sofía L.', type: 'Crisis en Público', color: 'green', text: "El berrinche del súper era mi terror. Hoy saqué mi llavero de emergencia (Order Bump) y ¡santo remedio! La gente me preguntó qué era esa maravilla.", img: "https://randomuser.me/api/portraits/women/65.jpg" },
+      { name: 'Miss Andrea', type: 'Educadora', color: 'purple', text: "Soy profesora de preescolar y lo estoy usando en mi aula. Es increíble cómo los niños entienden sus emociones cuando las ven como personajes.", img: "https://randomuser.me/api/portraits/women/28.jpg" },
+      { name: 'Mariana S.', type: 'Hermanos', color: 'yellow', text: "Mis hijos se mataban peleando. El kit les enseñó a turnarse el 'botón de la calma'. Ahora resuelven sus conflictos ellos solos sin que yo intervenga.", img: "https://randomuser.me/api/portraits/women/90.jpg" },
+      { name: 'Carolina R.', type: 'Sueño', color: 'blue', text: "Los audios para dormir son brujería jaja. Mi hija tardaba 2 horas en dormirse. Puse el cuento de la 'Lluvia Mágica' y cayó rendida en 10 minutos.", img: "https://randomuser.me/api/portraits/women/5.jpg" },
+      { name: 'Fernanda P.', type: 'Niño Intenso', color: 'red', text: "Mi hijo es de carácter muy fuerte. Le encantó el Diario de Emociones. Ahora dibuja a su monstruo antes de dormir en lugar de pelear.", img: "https://randomuser.me/api/portraits/women/33.jpg" },
+      { name: 'Patty L.', type: 'Gritos', color: 'green', text: "Adiós a los gritos. Antes yo gritaba y ellos gritaban más. Ahora corren a sus herramientas para respirar. Me devolvieron la tranquilidad mental.", img: "https://randomuser.me/api/portraits/women/54.jpg" },
+      { name: 'Gabriela T.', type: 'Cambio de Mamá', color: 'purple', text: "Lo mejor invertido. No solo cambió a mi hijo, me cambió a mí. Ya no soy la mamá que amenaza, soy la que guía. Gracias por esto.", img: "https://randomuser.me/api/portraits/women/76.jpg" }
+  ];
+
+  // Auto-scroll logic for Testimonials
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const interval = setInterval(() => {
+        if (scrollContainer) {
+             const cardWidth = 300; // Ancho aproximado de la tarjeta + gap
+             const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+             
+             // Si llegamos al final (con un margen de error), volvemos al principio
+             if (scrollContainer.scrollLeft >= maxScroll - 50) {
+                 scrollContainer.scrollTo({left: 0, behavior: 'smooth'});
+             } else {
+                 scrollContainer.scrollBy({left: cardWidth, behavior: 'smooth'});
+             }
+        }
+    }, 3500); 
+
+    return () => clearInterval(interval);
+  }, []);
 
   const borderColors: {[key: string]: string} = {
     yellow: 'border-yellow-400',
@@ -92,15 +130,6 @@ const App = () => {
                     <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed font-medium">
                         Regula sus emociones y recupera la calma en minutos. Sin gritos, sin castigos y sin ser la "mamá mala".
                     </p>
-                    <div className="flex flex-col items-center justify-center w-full">
-                        <a href="https://pay.hotmart.com/D104179255R?checkoutMode=10" target="_blank" onClick={handleAddToCart} className="btn-pulse bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-black text-lg md:text-2xl py-4 px-8 rounded-full shadow-xl transition transform hover:-translate-y-1 border-b-4 border-yellow-600 w-full md:w-auto text-center cursor-pointer">
-                            ¡SÍ! QUIERO AYUDAR A MI HIJO
-                        </a>
-                        <p className="text-xs text-gray-500 mt-3 flex items-center gap-1 font-semibold">
-                            <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            Descarga inmediata - Empieza hoy mismo
-                        </p>
-                    </div>
                 </div>
             </div>
             {/* Wave 1 */}
@@ -154,7 +183,7 @@ const App = () => {
             {/* Wave 2 */}
             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(243, 244, 246, 0.7)" />
@@ -314,27 +343,19 @@ const App = () => {
                 <h2 className="font-heading text-2xl md:text-3xl font-black text-center mb-10 text-gray-900 px-2 leading-tight">
                     Más de 1.000 padres ya recuperaron la calma. <br className="hidden md:block" />Aquí sus historias:
                 </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-4 scrollbar-hide">
-                    {[
-                        { name: 'Valeria G.', type: 'Mamá TDAH', color: 'yellow', text: "Mi hijo tiene TDAH y nada le funcionaba. Este método visual fue lo único que captó su atención. Ahora él mismo busca su 'semáforo' cuando se siente abrumado." },
-                        { name: 'Carlos R.', type: 'Papá', color: 'blue', text: "Soy papá y al principio pensé que eran 'dibujitos'. Pero ver a mi hijo respirar hondo en vez de tirar el control de la TV me dejó callado. Funciona de verdad." },
-                        { name: 'Clau M.', type: 'La Escéptica', color: 'red', text: "Lo compré sin mucha fe. Pero en 3 días el cambio fue radical. El concepto del monstruo les hace 'clic' en la cabeza. Por fin cenamos en paz." },
-                        { name: 'Sofía L.', type: 'Crisis en Público', color: 'green', text: "El berrinche del súper era mi terror. Hoy saqué mi llavero de emergencia (Order Bump) y ¡santo remedio! La gente me preguntó qué era esa maravilla." },
-                        { name: 'Miss Andrea', type: 'Educadora', color: 'purple', text: "Soy profesora de preescolar y lo estoy usando en mi aula. Es increíble cómo los niños entienden sus emociones cuando las ven como personajes." },
-                        { name: 'Mariana S.', type: 'Hermanos', color: 'yellow', text: "Mis hijos se mataban peleando. El kit les enseñó a turnarse el 'botón de la calma'. Ahora resuelven sus conflictos ellos solos sin que yo intervenga." },
-                        { name: 'Carolina R.', type: 'Sueño', color: 'blue', text: "Los audios para dormir son brujería jaja. Mi hija tardaba 2 horas en dormirse. Puse el cuento de la 'Lluvia Mágica' y cayó rendida en 10 minutos." },
-                        { name: 'Fernanda P.', type: 'Niño Intenso', color: 'red', text: "Mi hijo es de carácter muy fuerte. Le encantó el Diario de Emociones. Ahora dibuja a su monstruo antes de dormir en lugar de pelear." },
-                        { name: 'Patty L.', type: 'Gritos', color: 'green', text: "Adiós a los gritos. Antes yo gritaba y ellos gritaban más. Ahora corren a sus herramientas para respirar. Me devolvieron la tranquilidad mental." },
-                        { name: 'Gabriela T.', type: 'Cambio de Mamá', color: 'purple', text: "Lo mejor invertido. No solo cambió a mi hijo, me cambió a mí. Ya no soy la mamá que amenaza, soy la que guía. Gracias por esto." }
-                    ].map((t, i) => (
+                <div ref={scrollRef} className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-4 scrollbar-hide">
+                    {testimonials.map((t, i) => (
                         <div key={i} className={`snap-center shrink-0 w-[85vw] md:w-[350px] bg-white p-8 rounded-[2rem] shadow-xl flex flex-col justify-between border-t-8 ${borderColors[t.color]}`}>
                             <div>
                                 <div className="text-yellow-400 text-lg mb-3">⭐⭐⭐⭐⭐</div>
                                 <p className="text-gray-600 italic mb-6 font-medium leading-relaxed">"{t.text}"</p>
                             </div>
-                            <div>
-                                <p className="font-bold text-gray-900">{t.name}</p>
-                                <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide">{t.type}</p>
+                            <div className="flex items-center">
+                                <img src={t.img} alt={t.name} className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-gray-100 shadow-sm" />
+                                <div>
+                                    <p className="font-bold text-gray-900">{t.name}</p>
+                                    <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide">{t.type}</p>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -399,11 +420,11 @@ const App = () => {
                              <div className="bg-white text-gray-900 p-8 rounded-3xl text-center shadow-2xl mt-8 border-4 border-yellow-400 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase">Oferta Limitada</div>
                                 <p className="text-gray-500 text-sm mb-2 font-semibold">Precio Habitual: <span className="line-through text-red-500 text-lg">$49 USD</span></p>
-                                <div className="text-6xl font-black text-blue-900 mb-2 tracking-tighter">$12.99 <span className="text-xl font-bold text-gray-500">USD</span></div>
+                                <div className="text-6xl font-black text-blue-900 mb-2 tracking-tighter">$10.99 <span className="text-xl font-bold text-gray-500">USD</span></div>
                                 <p className="text-green-700 font-bold mb-6 text-sm bg-green-100 inline-block px-3 py-1 rounded-full">Pago único - Acceso de por vida</p>
                                 
                                 <a href="https://pay.hotmart.com/D104179255R?checkoutMode=10" target="_blank" onClick={handleAddToCart} className="btn-pulse block bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-black text-xl py-4 px-6 rounded-full shadow-lg transition transform hover:-translate-y-1 w-full border-b-4 border-yellow-600 cursor-pointer">
-                                    DESCARGAR AHORA POR $12.99
+                                    DESCARGAR AHORA POR $10.99
                                 </a>
 
                                 <div className="flex justify-center gap-4 mt-6 opacity-60 grayscale hover:grayscale-0 transition duration-300">
@@ -420,10 +441,10 @@ const App = () => {
                     <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
-                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(249, 250, 251, 0.7)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(249, 250, 251, 0.5)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(249, 250, 251, 0.3)" />
-                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#f9fafb" />
+                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.7)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.5)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.3)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#ffffff" />
                 </g>
             </svg>
         </section>
