@@ -8,6 +8,86 @@ declare global {
   }
 }
 
+// --- COMPONENTE DE NOTIFICACIÓN DE COMPRA (SOCIAL PROOF) ---
+const PurchaseNotification = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Datos simulados de compras recientes (Nombres comunes y países hispanos)
+  const buyers = [
+    { name: "María J.", location: "Ciudad de México, MX", time: "hace 2 minutos" },
+    { name: "Ana P.", location: "Bogotá, Colombia", time: "hace 5 minutos" },
+    { name: "Sofía L.", location: "Santiago, Chile", time: "hace 12 minutos" },
+    { name: "Carolina M.", location: "Madrid, España", time: "hace 8 minutos" },
+    { name: "Valentina R.", location: "Lima, Perú", time: "hace 15 minutos" },
+    { name: "Laura G.", location: "Miami, USA", time: "hace 3 minutos" },
+    { name: "Camila S.", location: "Buenos Aires, AR", time: "hace 20 minutos" },
+    { name: "Andrea B.", location: "Monterrey, MX", time: "hace 7 minutos" },
+    { name: "Paula C.", location: "Medellín, CO", time: "hace 10 minutos" }
+  ];
+
+  useEffect(() => {
+    // Retraso inicial antes de mostrar la primera notificación
+    const initialDelay = setTimeout(() => {
+      setIsVisible(true);
+    }, 4000);
+
+    return () => clearTimeout(initialDelay);
+  }, []);
+
+  useEffect(() => {
+    let hideTimer: ReturnType<typeof setTimeout>;
+    let showTimer: ReturnType<typeof setTimeout>;
+
+    if (isVisible) {
+      // Ocultar después de 6 segundos
+      hideTimer = setTimeout(() => {
+        setIsVisible(false);
+      }, 6000);
+    } else {
+      // Mostrar el siguiente después de 10 segundos de silencio
+      showTimer = setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % buyers.length);
+        setIsVisible(true);
+      }, 10000);
+    }
+
+    return () => {
+      clearTimeout(hideTimer);
+      clearTimeout(showTimer);
+    };
+  }, [isVisible]);
+
+  const buyer = buyers[currentIndex];
+
+  return (
+    <div 
+      className={`fixed bottom-4 left-4 z-50 transition-all duration-700 transform ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+      }`}
+    >
+      <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-3 pr-5 flex items-center gap-3 max-w-[320px] md:max-w-sm">
+        {/* Imagen del producto o icono */}
+        <div className="relative shrink-0">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center overflow-hidden">
+                 <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/mockup.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbW9ja3VwLmpwZyIsImlhdCI6MTc2OTg3MzQ1NiwiZXhwIjoxODAxNDA5NDU2fQ.0hyDgDOshqsMAzSRa2BvPYFpcOQbMIZBY1bPGseWXm8" alt="Kit" className="w-full h-full object-cover" />
+            </div>
+            <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-0.5 border-2 border-white">
+                <svg className="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+        </div>
+        
+        {/* Texto */}
+        <div className="flex flex-col">
+            <p className="text-xs text-gray-500 leading-none mb-1">{buyer.name} en <span className="font-bold text-gray-700">{buyer.location}</span></p>
+            <p className="text-sm font-bold text-blue-900 leading-tight">Compró el Kit Domando a mi Monstruo</p>
+            <p className="text-[10px] text-gray-400 mt-0.5">{buyer.time}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   // 1. Configuración de Pixel (SOLO EVENTOS ADICIONALES)
   useEffect(() => {
@@ -529,6 +609,9 @@ const App = () => {
                 <p className="mt-2 text-xs opacity-60">Todos los derechos reservados. Este sitio no es parte del sitio web de Facebook o Facebook Inc.</p>
             </div>
         </footer>
+
+        {/* Incluir Notificación */}
+        <PurchaseNotification />
     </div>
   );
 };
