@@ -8,6 +8,70 @@ declare global {
   }
 }
 
+// --- CONSTANTES ---
+const whatsappImages = [
+  "https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/testimonios/1080x1350_vertical_45_2k_202602102222.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by90ZXN0aW1vbmlvcy8xMDgweDEzNTBfdmVydGljYWxfNDVfMmtfMjAyNjAyMTAyMjIyLmpwZWciLCJpYXQiOjE3NzA3ODA1NDQsImV4cCI6MTgwMjMxNjU0NH0.r_XVMLCnr2Hhktjl7FPg1wVKKCOe7SV3rPLnDk5UECU",
+  "https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/testimonios/1080x1350_vertical_whatsappstyle_2k_2026021%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by90ZXN0aW1vbmlvcy8xMDgweDEzNTBfdmVydGljYWxfd2hhdHNhcHBzdHlsZV8ya18yMDI2MDIxICgxKS5qcGVnIiwiaWF0IjoxNzcwNzgwNTYzLCJleHAiOjE4MDIzMTY1NjN9.E0f159fR8SuOqgBIbGdkdun9KextcAA0cJhzd7VOcFE",
+  "https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/testimonios/1080x1350_vertical_whatsappstyle_2k_2026021%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by90ZXN0aW1vbmlvcy8xMDgweDEzNTBfdmVydGljYWxfd2hhdHNhcHBzdHlsZV8ya18yMDI2MDIxICgyKS5qcGVnIiwiaWF0IjoxNzcwNzgwNTc4LCJleHAiOjE4MDIzMTY1Nzh9.QGMtCQRtWFdI2rpJZ74JNlPh47ex43w2bsZUAt3lL5w",
+  "https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/testimonios/1080x1350_vertical_whatsappstyle_2k_2026021.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by90ZXN0aW1vbmlvcy8xMDgweDEzNTBfdmVydGljYWxfd2hhdHNhcHBzdHlsZV8ya18yMDI2MDIxLmpwZWciLCJpYXQiOjE3NzA3ODA1OTMsImV4cCI6MTgwMjMxNjU5M30.BYIfCTQ0n_6xJEF2-iI4XFsc9g5_RAuw-bX-Da5weyM",
+  "https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/testimonios/Image_1080x1350_vertical_2k_202602102221.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by90ZXN0aW1vbmlvcy9JbWFnZV8xMDgweDEzNTBfdmVydGljYWxfMmtfMjAyNjAyMTAyMjIxLmpwZWciLCJpYXQiOjE3NzA3ODA2MTUsImV4cCI6MTgwMjMxNjYxNX0.bTad6D-ssJ0DAp_tdxep__nIO3BeTgjBP_ZCHlxk0U0"
+];
+
+// --- COMPONENTE CARRUSEL WHATSAPP ---
+const WhatsappCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % whatsappImages.length);
+    }, 4000); // Cambia cada 4 segundos
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="relative w-full max-w-sm mx-auto overflow-hidden rounded-[2.5rem] border-8 border-gray-900 shadow-2xl bg-gray-800">
+      {/* Barra superior estilo celular */}
+      <div className="absolute top-0 left-0 right-0 h-8 bg-gray-900 z-20 flex justify-center items-center">
+         <div className="w-20 h-4 bg-black rounded-b-xl"></div>
+      </div>
+      
+      {/* Contenedor deslizante */}
+      <div 
+        className="flex transition-transform duration-500 ease-in-out h-[500px] md:h-[600px] bg-gray-100"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {whatsappImages.map((img, index) => (
+          <div key={index} className="w-full h-full flex-shrink-0 relative">
+             <img 
+               src={img} 
+               alt={`Testimonio ${index + 1}`} 
+               className="w-full h-full object-cover"
+               loading="lazy"
+             />
+             {/* Overlay sutil para brillo */}
+             <div className="absolute inset-0 bg-gradient-to-b from-black/5 to-transparent pointer-events-none"></div>
+          </div>
+        ))}
+      </div>
+
+      {/* Indicadores (Dots) */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+        {whatsappImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              currentIndex === index ? 'bg-white w-6' : 'bg-white/50'
+            }`}
+            aria-label={`Ver testimonio ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 // --- COMPONENTE DE NOTIFICACIÓN DE COMPRA (SOCIAL PROOF) ---
 const PurchaseNotification = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -536,6 +600,28 @@ const App = () => {
                        </div>
                   </div>
              </div>
+             <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
+                </defs>
+                <g className="parallax">
+                    <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.7)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.5)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.3)" />
+                    <use xlinkHref="#gentle-wave" x="48" y="7" fill="#ffffff" />
+                </g>
+            </svg>
+        </section>
+
+        {/* 7. WHATSAPP TESTIMONIALS */}
+        <section className="py-20 bg-gray-50 relative z-20">
+             <div className="container mx-auto px-4 text-center pb-24">
+                <h2 className="text-3xl font-black text-gray-900 mb-10 font-heading">
+                    Resultados Reales en <span className="text-green-600">WhatsApp</span>
+                </h2>
+                <WhatsappCarousel />
+            </div>
+            {/* Wave 5 */}
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
                     <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
