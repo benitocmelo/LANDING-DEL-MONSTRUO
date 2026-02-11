@@ -37,15 +37,15 @@ const WhatsappCarousel = () => {
       
       {/* Contenedor deslizante */}
       <div 
-        className="flex transition-transform duration-500 ease-in-out h-[500px] md:h-[600px] bg-gray-100"
+        className="flex transition-transform duration-500 ease-in-out h-[500px] md:h-[600px] bg-gray-200"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {whatsappImages.map((img, index) => (
-          <div key={index} className="w-full h-full flex-shrink-0 relative">
+          <div key={index} className="w-full h-full flex-shrink-0 relative flex items-center justify-center">
              <img 
                src={img} 
                alt={`Testimonio ${index + 1}`} 
-               className="w-full h-full object-cover"
+               className="w-full h-full object-contain"
                loading="lazy"
              />
              {/* Overlay sutil para brillo */}
@@ -61,7 +61,7 @@ const WhatsappCarousel = () => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              currentIndex === index ? 'bg-white w-6' : 'bg-white/50'
+              currentIndex === index ? 'bg-gray-800 w-6' : 'bg-gray-400'
             }`}
             aria-label={`Ver testimonio ${index + 1}`}
           />
@@ -198,6 +198,43 @@ const App = () => {
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  // Datos de Preguntas Frecuentes Ordenados para Conversión
+  const faqs = [
+    // --- BÁSICOS Y LOGÍSTICA ---
+    { id: 1, q: "¿Qué estoy comprando exactamente?", a: "Estás comprando un kit digital imprimible (PDF) con actividades prácticas para ayudar a niños de 4 a 10 años a reconocer su enojo, soltar energía y volver a la calma sin gritos." },
+    { id: 2, q: "¿Es un libro físico?", a: "No. Es digital. Lo recibes en tu correo y en tu cuenta de Hotmart para descargarlo y usarlo." },
+    { id: 3, q: "¿Cómo lo recibo después del pago?", a: "Después de comprar, Hotmart te envía un correo con el acceso y también queda disponible en Hotmart > Mis compras. Desde ahí lo descargas cuando quieras." },
+    { id: 4, q: "¿Cuánto tiempo tarda en llegarme?", a: "Pagos con tarjeta: normalmente instantáneo. Transferencia/otros métodos: puede tardar un poco según la confirmación del pago." },
+    { id: 5, q: "¿En qué formato viene? ¿Necesito alguna app?", a: "Viene en PDF. Lo puedes abrir en celular, tablet o computador con cualquier lector de PDF." },
+    
+    // --- USO PRÁCTICO ---
+    { id: 6, q: "¿Necesito impresora?", a: "No es obligatorio. Puedes: Imprimir en casa, imprimir en una papelería, o usarlo desde el celular/tablet leyendo las actividades y aplicándolas igual." },
+    { id: 7, q: "¿Cuánto debo imprimir?", a: "Lo ideal es imprimir: Las tarjetas de calma (para usarlas rápido), y las páginas que quieras repetir. Puedes imprimir 'por partes', no todo de una." },
+    { id: 8, q: "¿Cuánto tiempo toma aplicarlo?", a: "Está pensado para momentos reales de crianza: 5 a 15 minutos por actividad. No necesitas 'una hora de terapia'." },
+    { id: 9, q: "¿Cuándo se ven resultados?", a: "Depende del niño y la constancia, pero muchos padres notan cambios en pocos días porque por fin tienen un plan claro. No prometemos 'magia', sí herramientas prácticas." },
+    
+    // --- PAGOS Y SEGURIDAD ---
+    { id: 10, q: "¿El pago es seguro?", a: "Sí. El pago lo procesa Hotmart, una plataforma de pagos y productos digitales con sistema antifraude y soporte." },
+    { id: 11, q: "¿Qué métodos de pago aceptan?", a: "Hotmart suele permitir (según país): tarjeta débito/crédito, transferencia, y otros métodos locales. Al entrar al checkout verás los disponibles para tu país." },
+    { id: 12, q: "¿Puedo pagar en cuotas?", a: "En muchos países Hotmart permite cuotas con tarjeta. Si aparece en tu checkout, podrás elegir el número de cuotas antes de confirmar." },
+    { id: 13, q: "¿Tiene garantía?", a: "Sí, cuentas con una garantía incondicional de 7 días. Si no es lo que esperabas, solicitas la devolución en Hotmart y se te reintegra el 100% de tu dinero." },
+
+    // --- CASOS ESPECÍFICOS Y OBJECIONES ---
+    { id: 14, q: "¿Sirve para TDAH o Autismo?", a: "Puede ayudar como apoyo porque enseña rutinas de calma y regulación, pero cada niño es diferente. Si hay diagnóstico, lo mejor es usarlo como complemento y adaptar lo que funcione." },
+    { id: 15, q: "¿Y si mi hijo tiene rabietas muy fuertes?", a: "El kit está hecho para ayudarte a crear una rutina y reducir escaladas, pero si hay riesgo de daño o situaciones extremas, conviene buscar ayuda profesional." },
+    { id: 16, q: "¿Esto es para niños “malos”?", a: "No. La idea es cambiar el enfoque: no es 'malo', es un niño desbordado que aún está aprendiendo a regularse." },
+    { id: 17, q: "¿Funciona si mi hijo no quiere “hablar”?", a: "Sí, porque muchas actividades son de acción (soltar energía, rutinas breves) y no dependen solo de conversación." },
+    { id: 18, q: "¿Necesito experiencia para aplicarlo?", a: "No. Está diseñado para papás ocupados: instrucciones simples y paso a paso." },
+    { id: 23, q: "¿Esto reemplaza terapia o psicólogo?", a: "No. Es un kit educativo y práctico para casa. Si tu hijo tiene un diagnóstico o necesitas acompañamiento clínico, esto puede ser un apoyo, pero no reemplaza atención profesional." },
+
+    // --- SOPORTE Y ACCESO ---
+    { id: 19, q: "¿Puedo usarlo en más de un dispositivo?", a: "Sí. Puedes descargar el PDF y abrirlo en el dispositivo que uses (celular, tablet, PC)." },
+    { id: 20, q: "¿Cuántas veces puedo descargarlo?", a: "Normalmente queda disponible en tu cuenta de Hotmart para descargarlo cuando lo necesites." },
+    { id: 21, q: "No me llegó el correo, ¿qué hago?", a: "Revisa spam/promociones y luego entra a Hotmart > Mis compras. Si no lo ves, contacta soporte con el correo con el que compraste." },
+    { id: 22, q: "¿Tienen soporte si tengo dudas?", a: "Sí. Puedes escribirnos y te ayudamos con acceso/descarga y recomendaciones de uso básico." }
+  ];
+
 
   // Testimonials Data with Images
   const testimonials = [
@@ -624,7 +661,7 @@ const App = () => {
             {/* Wave 5 */}
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.7)" />
@@ -666,12 +703,7 @@ const App = () => {
              <div className="container mx-auto px-4 max-w-3xl">
                 <h2 className="text-3xl font-black text-center mb-10 text-gray-900 font-heading">Preguntas Frecuentes</h2>
                 <div className="space-y-4">
-                     {[
-                         { id: 1, q: "¿Para qué edad es?", a: "Ideal para niños de 4 a 10 años. Los más pequeños disfrutan los dibujos y personajes, mientras que los más grandes entienden la técnica de autorregulación a fondo." },
-                         { id: 2, q: "¿Es un libro físico?", a: "No, es un Kit Digital (PDF). Lo recibes en tu correo inmediatamente después del pago y puedes imprimir las páginas que quieras, las veces que quieras." },
-                         { id: 3, q: "¿Sirve para TDAH o Autismo?", a: "¡Sí! Al ser 100% visual, estructurado y concreto, es perfecto para cerebros neurodivergentes que necesitan explicaciones claras y no tanto texto abstracto." },
-                         { id: 4, q: "¿Cómo lo recibo?", a: "Automáticamente después del pago te llega un email con el acceso a la plataforma donde podrás descargar todo el material de inmediato." }
-                     ].map((item) => (
+                     {faqs.map((item) => (
                          <div key={item.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                              <button onClick={() => toggleFaq(item.id)} className="w-full text-left px-6 py-5 font-bold text-gray-800 flex justify-between items-center hover:bg-gray-50 transition">
                                  {item.q}
