@@ -251,7 +251,7 @@ const App = () => {
              <div className="container mx-auto px-4 max-w-5xl relative z-10 pb-24">
                 <div className="flex flex-col md:flex-row gap-10 items-center">
                     <div className="w-full md:w-1/2">
-                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/mama.gif?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9tYW1hLmdpZiIsImlhdCI6MTc2OTg3NjQ5NCwiZXhwIjoxODAxNDEyNDk0fQ.ImrZ2clIZbLfbYm3Gk4h8kwf7v1q3L-zEAcC9K_ekBE" 
+                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/Usa_la_imagen_202602102200_jaadn-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by9Vc2FfbGFfaW1hZ2VuXzIwMjYwMjEwMjIwMF9qYWFkbi1lemdpZi5jb20tdmlkZW8tdG8td2VicC1jb252ZXJ0ZXIud2VicCIsImlhdCI6MTc3MDc3OTIxNywiZXhwIjoxODAyMzE1MjE3fQ.BhUpcQceiwxkenghw1SdAmZAQHDcgJNf1yVxpP5sGRw" 
                              alt="Madre estresada" 
                              className="rounded-[2rem] shadow-xl border-2 border-gray-100 w-full transform -rotate-1" />
                     </div>
@@ -341,25 +341,25 @@ const App = () => {
                 <div className="grid md:grid-cols-3 gap-8">
                     {/* Step 1 */}
                     <div className="bg-blue-50 rounded-[2.5rem] p-8 shadow-lg hover:shadow-2xl transition duration-300 border border-blue-100 flex flex-col items-center text-center">
-                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/Paso%201%20(El%20Monstruo).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9QYXNvIDEgKEVsIE1vbnN0cnVvKS5wbmciLCJpYXQiOjE3Njk3MzA2ODksImV4cCI6MTgwMTI2NjY4OX0.dP8cIIt-kX1ANzuXTs1miEVRmuH-UUQt9fpGTvyJWb0" 
+                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/freepik__fotografa-realista-estilo-lifestyle-educativo-luz-__57596.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by9mcmVlcGlrX19mb3RvZ3JhZmEtcmVhbGlzdGEtZXN0aWxvLWxpZmVzdHlsZS1lZHVjYXRpdm8tbHV6LV9fNTc1OTYucG5nIiwiaWF0IjoxNzcwNzc4Nzk4LCJleHAiOjE4MDIzMTQ3OTh9.sXae4kh4Vb2rc2Jw0OfjNaxa7jC9WhQU9BlvxyNHM60" 
                              alt="Paso 1: Monstruo" 
-                             className="w-48 h-48 object-contain mb-6 drop-shadow-md" />
+                             className="w-48 h-48 object-cover rounded-2xl mb-6 shadow-md border-4 border-white" />
                         <h3 className="text-xl font-bold text-blue-600 mb-3 font-heading">🔹 Paso 1: Conocer al Monstruo</h3>
                         <p className="text-gray-600 leading-relaxed">Tu hijo dejará de sentirse "malo". Entenderá que la ira es solo un "Monstruo Rojo". Al ponerle nombre y cara, le quitamos el miedo.</p>
                     </div>
                      {/* Step 2 */}
                     <div className="bg-yellow-50 rounded-[2.5rem] p-8 shadow-lg hover:shadow-2xl transition duration-300 border border-yellow-100 flex flex-col items-center text-center md:-mt-8 relative z-10">
-                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/paso%202%20semaforo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9wYXNvIDIgc2VtYWZvcm8ucG5nIiwiaWF0IjoxNzY5NzMwNzEzLCJleHAiOjE4MDEyNjY3MTN9.15VEQsVB2hXl_SwEyp5N3cLd8JOh_DtTQfw59BR8Ceo" 
+                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/freepik__fotografa-realista-plano-medionio-de-5-a-7-aos-de-__57594.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by9mcmVlcGlrX19mb3RvZ3JhZmEtcmVhbGlzdGEtcGxhbm8tbWVkaW9uaW8tZGUtNS1hLTctYW9zLWRlLV9fNTc1OTQucG5nIiwiaWF0IjoxNzcwNzc3NzIzLCJleHAiOjE4MDIzMTM3MjN9.EBpOPVKv_drOEbl5bJK4UwPN8CJYRseJ1U_L9Mbg6W0" 
                              alt="Paso 2: Semáforo" 
-                             className="w-48 h-48 object-contain mb-6 drop-shadow-md" />
+                             className="w-48 h-48 object-cover rounded-2xl mb-6 shadow-md border-4 border-white" />
                         <h3 className="text-xl font-bold text-yellow-600 mb-3 font-heading">🔹 Paso 2: El Semáforo</h3>
                         <p className="text-gray-600 leading-relaxed">Usando la técnica visual del "Para, Piensa, Actúa", aprenderá a detenerse antes de golpear. Un sistema que su cerebro procesa rápido.</p>
                     </div>
                     {/* Step 3 */}
                     <div className="bg-green-50 rounded-[2.5rem] p-8 shadow-lg hover:shadow-2xl transition duration-300 border border-green-100 flex flex-col items-center text-center">
-                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/LANDING%20POST%20PARTO/landing%20ebook/Paso%203%20(Los%20Botones).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJMQU5ESU5HIFBPU1QgUEFSVE8vbGFuZGluZyBlYm9vay9QYXNvIDMgKExvcyBCb3RvbmVzKS5wbmciLCJpYXQiOjE3Njk3MzA3MjgsImV4cCI6MTgwMTI2NjcyOH0.HrFy-hPeKYVx3s4rTm3s19b2twOo_4sfC1wcc2Wnw4E" 
+                        <img src="https://erxxuotslhjluwrlxmyx.supabase.co/storage/v1/object/sign/monstruo/freepik__fotografa-realista-estilo-lifestyle-familiarnio-de__57595.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hZWQxZTBkNS1mNzcwLTRmMDMtODRhYy1jYTk2YzZkZmM1NDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtb25zdHJ1by9mcmVlcGlrX19mb3RvZ3JhZmEtcmVhbGlzdGEtZXN0aWxvLWxpZmVzdHlsZS1mYW1pbGlhcm5pby1kZV9fNTc1OTUucG5nIiwiaWF0IjoxNzcwNzc3NjcxLCJleHAiOjE4MDIzMTM2NzF9.jWLLOvgS4K2ljZ-k792uvCToVFH387RXehrdl83IhY8" 
                              alt="Paso 3: Botones" 
-                             className="w-48 h-48 object-contain mb-6 drop-shadow-md" />
+                             className="w-48 h-48 object-cover rounded-2xl mb-6 shadow-md border-4 border-white" />
                         <h3 className="text-xl font-bold text-green-600 mb-3 font-heading">🔹 Paso 3: Botones de Calma</h3>
                         <p className="text-gray-600 leading-relaxed">¿Qué hago con esta rabia? El Kit le entrega un "Panel de Control" con opciones reales: respirar, apretar o pedir un abrazo.</p>
                     </div>
@@ -464,7 +464,7 @@ const App = () => {
             </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(30, 58, 138, 0.7)" />
