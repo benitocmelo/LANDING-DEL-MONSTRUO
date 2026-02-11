@@ -198,6 +198,9 @@ const App = () => {
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+  
+  // State for Guarantee
+  const [guaranteeOpen, setGuaranteeOpen] = useState(false);
 
   // Datos de Preguntas Frecuentes Ordenados para Conversión
   const faqs = [
@@ -527,7 +530,7 @@ const App = () => {
             </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
@@ -639,7 +642,7 @@ const App = () => {
              </div>
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 v44h-352z" />
                 </defs>
                 <g className="parallax">
                     <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.7)" />
@@ -672,19 +675,69 @@ const App = () => {
             </svg>
         </section>
 
-        {/* 8. GARANTÍA */}
+        {/* 8. GARANTÍA (High Conversion Mobile-First Design) */}
         <section className="py-20 bg-white relative z-20">
-             <div className="container mx-auto px-4 max-w-3xl text-center pb-24">
-                <div className="mb-6 flex justify-center animate-bounce">
-                    <svg className="w-24 h-24 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+             <div className="container mx-auto px-4">
+                {/* Changed max-w-2xl to max-w-3xl, increased padding p-5 to p-8 */}
+                <div className="max-w-3xl mx-auto bg-white border border-gray-100 rounded-[2.5rem] p-6 md:p-10 shadow-2xl">
+                   {/* Top: Icon + Text */}
+                   <div className="flex flex-col md:flex-row gap-5 md:gap-6 items-start">
+                      
+                      {/* Icono de escudo azul - Bigger */}
+                      <div className="shrink-0 w-16 h-16 rounded-[1.25rem] bg-blue-50 flex items-center justify-center text-blue-600 shadow-sm" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 2l8 4v7c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4z" stroke="currentColor" strokeWidth="2.5"/>
+                          <path d="M8.5 12.2l2.3 2.3 4.7-4.7" stroke="currentColor" strokeWidth="2.5"/>
+                        </svg>
+                      </div>
+
+                      <div className="flex-1">
+                         {/* Badge Bigger */}
+                         <span className="inline-flex items-center text-sm font-bold px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 mb-3 border border-blue-100">
+                           Garantía Hotmart · 7 días
+                         </span>
+                         {/* Title Bigger */}
+                         <h3 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight mb-3 font-heading">
+                           Pruébalo sin riesgo
+                         </h3>
+                         {/* Text Bigger */}
+                         <p className="text-base md:text-lg text-gray-600 leading-relaxed m-0">
+                           Acceso inmediato al kit. Si en 7 días sientes que no es para ti, puedes solicitar el reembolso desde Hotmart.
+                         </p>
+                      </div>
+                   </div>
+
+                   {/* Bullets escaneables - Bigger text and spacing */}
+                   <ul className="mt-6 md:mt-8 mb-6 space-y-3 text-base md:text-lg text-gray-800 font-medium bg-gray-50/50 p-4 rounded-xl">
+                      <li className="flex items-center gap-2"><span className="text-xl">✅</span> Compra protegida por Hotmart</li>
+                      <li className="flex items-center gap-2"><span className="text-xl">✅</span> Descarga instantánea (PDF)</li>
+                      <li className="flex items-center gap-2"><span className="text-xl">✅</span> Úsalo esta noche (sin envíos)</li>
+                   </ul>
+
+                   {/* Toggle Button - Bigger touch target */}
+                   <button 
+                     onClick={() => setGuaranteeOpen(!guaranteeOpen)}
+                     className="w-full flex justify-between items-center p-4 md:p-5 bg-white hover:bg-gray-50 rounded-2xl border-2 border-gray-100 text-base md:text-lg font-bold text-gray-800 transition-all cursor-pointer min-h-[60px] shadow-sm hover:shadow-md"
+                     aria-expanded={guaranteeOpen}
+                   >
+                      <span>¿Cómo funciona la garantía?</span>
+                      <span className="text-2xl text-blue-600 font-black ml-4 bg-blue-50 w-8 h-8 flex items-center justify-center rounded-full">{guaranteeOpen ? '–' : '+'}</span>
+                   </button>
+
+                   {/* Dropdown Content - Bigger text */}
+                   {guaranteeOpen && (
+                     <div className="mt-4 p-5 md:p-6 bg-blue-50/50 rounded-2xl border border-blue-100 animate-fade-in">
+                       <ol className="list-decimal list-outside ml-5 text-base text-gray-700 space-y-3 font-medium">
+                         <li>Compras y recibes acceso inmediato.</li>
+                         <li>Dentro de 7 días, si no te aporta valor, entras a Hotmart → “Mis compras”.</li>
+                         <li>Solicitas el reembolso desde Hotmart (proceso guiado).</li>
+                       </ol>
+                       <p className="mt-4 text-sm text-gray-500 font-semibold m-0 border-t border-blue-200 pt-3">Sin llamadas. Sin explicaciones largas. Directo desde Hotmart.</p>
+                     </div>
+                   )}
                 </div>
-                <h2 className="text-3xl font-black text-gray-900 mb-4 font-heading">Tu Tranquilidad está Garantizada</h2>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Pruébalo por <strong>30 Días</strong>. Imprímelo, haz los ejercicios con tu hijo. 
-                    Si no ves cómo sus ojos brillan al entender a su monstruo, o si no sientes más paz en casa, te devolvemos el 100% de tu dinero. Sin preguntas.
-                </p>
-                <p className="font-bold text-blue-600 bg-blue-50 inline-block px-4 py-2 rounded-lg">El riesgo es todo nuestro.</p>
             </div>
+             {/* Wave decoration preserved */}
              <svg className="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
                 <defs>
                     <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58-18 88-18 v44h-352z" />
